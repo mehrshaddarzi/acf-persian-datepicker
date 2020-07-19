@@ -131,13 +131,13 @@ class ACF_PERSIAN_DATEPICKER_FIELD extends acf_field
         ?>
         <script type="text/javascript">
             jQuery(document).ready(function ($) {
-                jQuery("input[data-field=<?=$field['key']?>").persianDatepicker({
+                jQuery("input[data-field=<?=$field['key']?>]").persianDatepicker({
                     cellWidth: 38,
                     cellHeight: 38,
                     fontSize: 14,
                     formatDate: "<?=$field['format-date']?>",
                     onSelect: function () {
-                        let jdate = $("input[data-field=<?=$field['key']?>").attr("data-jdate");
+                        let jdate = $("input[data-field=<?=$field['key']?>]").attr("data-jdate");
                         jQuery("input[name='<?php echo esc_attr($field['name']) ?>']").val(jdate);
                     }
                     <?php
