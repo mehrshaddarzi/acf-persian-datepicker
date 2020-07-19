@@ -17,12 +17,13 @@
     }
 }
 .rtl{direction:rtl}
+
 .pdp-default {
-    position: absolute;    
-    direction: rtl;    
-    color: #555;
-    box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.19);
-	z-index: 99999;
+	position: absolute;    
+	direction: rtl;    
+	color: #555;
+	box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.19);
+	z-index: 999999999999999999;
 }
 
 .pdp-default ::-webkit-scrollbar-track
