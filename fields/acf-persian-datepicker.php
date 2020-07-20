@@ -48,8 +48,7 @@ class ACF_PERSIAN_DATEPICKER_FIELD extends acf_field
         *  l10n (array) Array of strings that are used in JavaScript. This allows JS strings to be translated in PHP and loaded via:
         *  var message = acf._e('jalalidatepicker', 'error');
         */
-        $this->l10n = array(
-            //'error' => __('Error! Please enter a higher value', 'acf-persian-datepicker'),
+        $this->l10n = array(//'error' => __('Error! Please enter a higher value', 'acf-persian-datepicker'),
         );
 
         /*
@@ -334,8 +333,16 @@ class ACF_PERSIAN_DATEPICKER_FIELD extends acf_field
         if (!empty($value) and function_exists('gregdate')) {
             $_greg_date = gregdate("Y-m-d", $value);
             $_timestamp = strtotime($_greg_date);
-            update_post_meta($post_id, $field['name'] . '-timestamp', $_timestamp);
-            update_post_meta($post_id, $field['name'] . '-date', $_greg_date);
+
+            // Check Meta is User or Post
+            if (stristr($post_id, "user_") != false) {
+                $user_id = str_ireplace("user_", "", $post_id);
+                update_user_meta($user_id, $field['name'] . '-timestamp', $_timestamp);
+                update_user_meta($user_id, $field['name'] . '-date', $_greg_date);
+            } else {
+                update_post_meta($post_id, $field['name'] . '-timestamp', $_timestamp);
+                update_post_meta($post_id, $field['name'] . '-date', $_greg_date);
+            }
         }
 
         return $value;
